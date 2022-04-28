@@ -569,7 +569,7 @@ local function properTable(t)
     return r
 end
 
-local mainLoop = macro(500, function(macro)
+macro(500, function()
     if not config.sort and not config.purse then return end
 
     local storageVal = config.list
@@ -622,26 +622,5 @@ local mainLoop = macro(500, function(macro)
             return use(getPurse())
         end
     end
-    macro:setOff()
-end)
-
-
-onContainerOpen(function(container, previousContainer)
-    mainLoop:setOn()
-end)
-
-onContainerClose(function(container)
-    mainLoop:setOn()
-end)
-  
-onAddItem(function(container, slot, item, oldItem)
-    mainLoop:setOn()
-end)
-
-onRemoveItem(function(container, slot, item)
-    mainLoop:setOn()
-end)
-
-onContainerUpdateItem(function(container, slot, item, oldItem)
-    mainLoop:setOn()
+    delay(1500)
 end)
